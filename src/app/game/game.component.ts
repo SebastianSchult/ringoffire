@@ -7,18 +7,18 @@ import { Game } from '../../models/game';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './game.component.html',
-  styleUrl: './game.component.scss'
+  styleUrl: './game.component.scss',
 })
 export class GameComponent {
   pickCardAnimation = false;
-  currentCard: string | undefined = '';
+  currentCard: string = '';
   game: Game;
 
   constructor() {
     this.game = new Game();
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.newGame();
   }
 
@@ -28,10 +28,17 @@ export class GameComponent {
   }
 
   takeCard() {
-    this.currentCard = this.game.stack.pop();
-    console.log('take card');
-    console.log(this.currentCard);
-    this.pickCardAnimation = true;
+    if (!this.pickCardAnimation) {
+      this.currentCard = this.game.stack.pop() ?? '';
+      console.log('take card');
+      console.log('new card:' + this.currentCard);
+      this.pickCardAnimation = true;
+     
+      setTimeout(() => {
+        this.game.playedCards.push(this.currentCard);
+        console.log('game is', this.game)
+        this.pickCardAnimation = false;
+      }, 1250);
+    }
   }
-  
 }
