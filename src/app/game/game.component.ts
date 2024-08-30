@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Game } from '../../models/game';
+import { PlayerComponent } from "../player/player.component";
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PlayerComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss',
 })
@@ -38,7 +39,7 @@ export class GameComponent {
         this.game.playedCards.push(this.currentCard);
         console.log('game is', this.game)
         this.pickCardAnimation = false;
-      }, 1250);
+      }, 1000);
     }
   }
 }
