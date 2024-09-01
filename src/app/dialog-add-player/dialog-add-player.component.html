@@ -3,11 +3,11 @@
   <p>Please enter the name of a player:</p>
   <mat-form-field>
     <mat-label>Player Name</mat-label>
-    <input matInput [(ngModel)]="name" /> <!-- Binde 'name' statt 'animal' -->
+    <input matInput [(ngModel)]="name" autofocus /> <!-- Binde 'name' statt 'animal' -->
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button (click)="onNoClick()">No Thanks</button>
-  <button mat-raised-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button> <!-- Dialog schließt mit 'name' -->
+  <button mat-raised-button [disabled]="name.length == 0" [mat-dialog-close]="name" >Ok</button> <!-- Dialog schließt mit 'name' -->
 </mat-dialog-actions>
 
