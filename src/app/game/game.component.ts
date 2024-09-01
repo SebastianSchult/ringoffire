@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Game } from '../../models/game';
-import { PlayerComponent } from "../player/player.component";
+import { PlayerComponent } from '../player/player.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Import MatDialog hier hinzufügen
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
-import { GameInfoComponent } from "../game-info/game-info.component";
+import { GameInfoComponent } from '../game-info/game-info.component';
 
 @Component({
   selector: 'app-game',
@@ -21,8 +21,8 @@ import { GameInfoComponent } from "../game-info/game-info.component";
     FormsModule,
     MatInputModule,
     MatDialogModule,
-    GameInfoComponent
-],
+    GameInfoComponent,
+  ],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'], // 'styleUrls' statt 'styleUrl' für mehrere SCSS-Dateien
 })
@@ -56,17 +56,14 @@ export class GameComponent {
   takeCard() {
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop() ?? '';
-      console.log('take card');
-      console.log('new card:' + this.currentCard);
       this.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
-        console.log('game is', this.game);
+
         this.pickCardAnimation = false;
       }, 1000);
     }
   }
 }
-
